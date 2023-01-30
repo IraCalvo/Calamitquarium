@@ -43,7 +43,6 @@ public class Coin : MonoBehaviour, IPointerClickHandler
         rb.isKinematic = true;
         coinCollider.enabled = false;
         AudioSource.PlayClipAtPoint(coinSFX, Camera.main.transform.position);
-
     }
 
     void OnTriggerEnter2D(Collider2D otherCollider)

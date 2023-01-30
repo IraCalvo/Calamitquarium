@@ -36,6 +36,8 @@ public class Pirahna : MonoBehaviour
     [SerializeField] float starvationTime;
 
     SpriteRenderer sr;
+    public Animator animator;
+    [SerializeField] AudioClip[] pirahnaCRONCHSFX;
 
     void Awake()
     {
@@ -64,7 +66,7 @@ public class Pirahna : MonoBehaviour
         hungerTimer = hungerTimer - Time.deltaTime;
         if(hungerTimer <= 0)
         {
-            //TODO: Change fish sprite
+            animator.SetBool("isHungry", true);
             fishState = FishState.Hungry;
         }
         if(hungerTimer <= starvationTime)
@@ -188,8 +190,9 @@ public class Pirahna : MonoBehaviour
     void OnDestroy()
     {
         GameObject[] currentAmountOfFish = GameObject.FindGameObjectsWithTag("Fish");
+        GameObject[] currentAmountOfPirahnas = GameObject.FindGameObjectsWithTag("Pirahna");
 
-        if(currentAmountOfFish.Length == 0)
+        if(currentAmountOfFish.Length == 0 && currentAmountOfPirahnas.Length == 0)
         {
             _gameManager.GameLoseChecker();
         }
@@ -199,9 +202,15 @@ public class Pirahna : MonoBehaviour
     {
         if (fishState == FishState.Hungry && otherCollider.tag == "Fish")
         {
+            animator.SetTrigger("isEating");
             Destroy(otherCollider.gameObject);
             fishState = FishState.Normal;
             hungerTimer = hungerTimerBase;
+
+            AudioClip sfx = pirahnaCRONCHSFX[Random.Range(0, pirahnaCRONCHSFX.Length)];
+            AudioSource.PlayClipAtPoint(sfx, Camera.main.transform.position);
+            animator.SetBool("isHungry", false);
+            animator.SetBool("isMoving", true);
         }
     }
 }

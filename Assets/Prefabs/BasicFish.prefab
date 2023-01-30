@@ -80,14 +80,14 @@ MonoBehaviour:
   fishSpeedMin: 1
   fishHungerSpeed: 3
   moneyToSpawnPrefab: {fileID: 2024099558128438495, guid: f243ab7977841bf4ebd47aa06fe2367f, type: 3}
-  timerToDropMoney: 10
+  timerToDropMoney: 9
   baseTimerToDropMoney: 0
   locationChooserMinTime: 1
   locationChooserMaxTime: 2
   randomTargetPosition: {x: 0, y: 0}
-  hungerTimer: 2
+  hungerTimer: 3
   hungerTimerBase: 0
-  starvationTime: -5
+  starvationTime: -12
   animator: {fileID: 8028397681141998084}
 --- !u!50 &283666050576519192
 Rigidbody2D:

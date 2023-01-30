@@ -195,8 +195,9 @@ public class BasicFish : MonoBehaviour
     void OnDestroy()
     {
         GameObject[] currentAmountOfFish = GameObject.FindGameObjectsWithTag("Fish");
+        GameObject[] currentAmountOfPirahnas = GameObject.FindGameObjectsWithTag("Pirahna");
 
-        if(currentAmountOfFish.Length == 0)
+        if(currentAmountOfFish.Length == 0 && currentAmountOfPirahnas.Length == 0)
         {
             _gameManager.GameLoseChecker();
         }
